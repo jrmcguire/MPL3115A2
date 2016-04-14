@@ -121,13 +121,9 @@ void main(void){
     SPBRG = 12; //sets baud rate of 9600 based on clock
     RCSTA = 0b10010000; //Receive settings
     
-    float pressure;
-    for(int i = 0; i < 10; i++){ // delay 1 second for pressure sensor to wake up
-        __delay_ms(50);
-        __delay_ms(50);
-    }
+    float pressure = readressure(); // initial pressure reading is zero
     while(1){
-        float pressure = readPressure(); // Get Pressure
+        pressure = readPressure(); // Get Pressure
         printf("Pressure = %3.2fkPA \n", pressure);
         for(int i = 0; i < 10; i++){
             __delay_ms(50);
